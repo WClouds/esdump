@@ -204,7 +204,7 @@ func ExportData(outputFile ,esUrl,indexName,matchBody string)(err error) {
 	for  chanItem := range dataChan {
 		storeCount +=1
 		hit:=chanItem.(elastic.SearchHit)
-		item:=hitItem{hit.Id,hit.Source}
+		item:=hitItem{hit.Index,hit.Id,hit.Source}
 		bs,_:=json.Marshal(&item)
 		_, err = outputWriter.Write(bs)
 		_, err = outputWriter.Write([]byte("\n"))
@@ -236,6 +236,7 @@ func getMb(size int64) float64{
 	return tmpf
 }
 type hitItem struct {
+	Index string
 	ID string
 	RawData json.RawMessage
 }
