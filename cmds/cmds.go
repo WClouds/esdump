@@ -236,7 +236,7 @@ func getMb(size int64) float64{
 	return tmpf
 }
 type hitItem struct {
-	Index string
-	ID string
-	RawData json.RawMessage
+	Index string `json:"_index"`
+	ID string `json:"_id"`
+	RawData json.RawMessage `json:"_source"`
 }
